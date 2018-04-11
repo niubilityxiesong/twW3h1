@@ -2,6 +2,7 @@ package com.thoughtworks.collection;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,18 +15,56 @@ public class Filter {
     }
 
     public List<Integer> filterEven() {
-        throw new NotImplementedException();
+        List<Integer> resultfilter = new ArrayList<>();
+        int sizearry = array.size();
+
+        for(int i = 0; i < sizearry; i++){
+            if(array.get(i) % 2 == 0){
+                resultfilter.add(array.get(i));
+            }
+        }
+        return resultfilter;
     }
 
     public List<Integer> filterMultipleOfThree() {
-        throw new NotImplementedException();
+        List<Integer> resultthree = new ArrayList<>();
+
+        for(int i = 0; i < array.size(); i++){
+            if(array.get(i) % 3 == 0){
+                resultthree.add(array.get(i));
+            }
+        }
+        return resultthree;
     }
 
     public List<Integer> getCommonElements(List<Integer> firstList, List<Integer> secondList) {
-        throw new NotImplementedException();
+        List<Integer> resultcomment = new ArrayList<>();
+        int sizearry = firstList.size();
+
+        for(int i = 0; i < sizearry; i++){
+            for(int j = 0; j < sizearry; j++){
+                if(firstList.get(i) == secondList.get(j)){
+                    resultcomment.add(firstList.get(i));
+                }
+            }
+        }
+        return resultcomment;
     }
 
     public List<Integer> getDifferentElements() {
-        throw new NotImplementedException();
+        List<Integer> resultdifferent = new ArrayList<>();
+        int sizearry = array.size();
+
+        resultdifferent.addAll(array);
+        for(int i = 0; i < sizearry; i++){
+            for(int j = i + 1; j < sizearry; j++){
+                if(resultdifferent.get(i) == resultdifferent.get(j)){
+                    resultdifferent.remove(j);
+                    --j;
+                    --sizearry;
+                }
+            }
+        }
+        return resultdifferent;
     }
 }
