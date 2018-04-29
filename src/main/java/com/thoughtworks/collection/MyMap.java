@@ -3,6 +3,7 @@ package com.thoughtworks.collection;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MyMap {
 
@@ -16,15 +17,16 @@ public class MyMap {
     }
 
     public List<Integer> getTriple() {
-        List<Integer> resulttriple = new ArrayList<>();
-        int temp;
+      // List<Integer> resulttriple = new ArrayList<>();
+      // int temp;
 
-        for(int i = 0; i < array.size(); i++){
-            temp = array.get(i);
-            temp = temp * 3;
-            resulttriple.add(temp);
-        }
-        return resulttriple;
+      // for(int i = 0; i < array.size(); i++){
+      //     temp = array.get(i);
+      //     temp = temp * 3;
+      //     resulttriple.add(temp);
+      // }
+      // return resulttriple;
+        return array.stream().map(value -> value * 3).collect(Collectors.toList());
     }
 
     public List<String> mapLetter() {

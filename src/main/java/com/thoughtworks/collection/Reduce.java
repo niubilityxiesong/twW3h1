@@ -3,10 +3,8 @@ package com.thoughtworks.collection;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.xml.soap.Node;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class Reduce {
 
@@ -36,14 +34,15 @@ public class Reduce {
     }
 
     public double getAverage() {
-        double resultavg = 0.0;
-        int sizearry = arrayList.size();
+      // double resultavg = 0.0;
+      // int sizearry = arrayList.size();
 
-        for(int i = 0; i < sizearry; i++){
-            resultavg += arrayList.get(i);
-        }
-        resultavg = resultavg / sizearry;
-        return resultavg;
+      // for(int i = 0; i < sizearry; i++){
+      //     resultavg += arrayList.get(i);
+      // }
+      // resultavg = resultavg / sizearry;
+      // return resultavg;
+        return arrayList.stream().mapToDouble(value -> value).average().getAsDouble();
     }
 
     public double getOrderedMedian() {
@@ -64,27 +63,29 @@ public class Reduce {
     }
 
     public int getFirstEven() {
-        int resultfirsteven = 0;
-
-        for(int i = 0; i < arrayList.size(); i++){
-            if(arrayList.get(i) % 2 == 0){
-                resultfirsteven = arrayList.get(i);
-                break;
-            }
-        }
-        return resultfirsteven;
+       // int resultfirsteven = 0;
+//
+       // for(int i = 0; i < arrayList.size(); i++){
+       //     if(arrayList.get(i) % 2 == 0){
+       //         resultfirsteven = arrayList.get(i);
+       //         break;
+       //     }
+       // }
+       // return resultfirsteven;
+        return arrayList.stream().filter(value -> value % 2 == 0).findFirst().get();
     }
 
     public int getIndexOfFirstEven() {
-        int resultindex = 0;
-
-        for(int i = 0; i < arrayList.size(); i++){
-            if(arrayList.get(i) % 2 == 0){
-                resultindex = i;
-                break;
-            }
-        }
-        return resultindex;
+       // int resultindex = 0;
+//
+       // for(int i = 0; i < arrayList.size(); i++){
+       //     if(arrayList.get(i) % 2 == 0){
+       //         resultindex = i;
+       //         break;
+       //     }
+       // }
+       // return resultindex;
+        return arrayList.indexOf(arrayList.stream().filter(value -> value % 2 == 0).findFirst().get());
     }
 
     public boolean isEqual(List<Integer> arrayList) {
@@ -118,25 +119,38 @@ public class Reduce {
     }
 
     public int getLastOdd() {
-        int resultlastodd = 0;
-
-        for(int i = 0; i < arrayList.size(); i++){
-            if(arrayList.get(i) % 2 != 0){
-                resultlastodd = arrayList.get(i);
+       // int resultlastodd = 0;
+//
+       // for(int i = 0; i < arrayList.size(); i++){
+       //     if(arrayList.get(i) % 2 != 0){
+       //         resultlastodd = arrayList.get(i);
+       //     }
+       // }
+       // return resultlastodd;
+        return arrayList.stream().reduce(0, (result, num) -> {
+            if(num % 2 != 0){
+                result = num;
             }
-        }
-        return resultlastodd;
+            return result;
+        });
     }
 
     public int getIndexOfLastOdd() {
-        int resultlastindex = 0;
+       // int resultlastindex = 0;
+//
+       // for(int i = 0; i < arrayList.size(); i++){
+       //     if(arrayList.get(i) % 2 != 0){
+       //         resultlastindex = i;
+       //     }
+       // }
+       // return resultlastindex;
 
-        for(int i = 0; i < arrayList.size(); i++){
-            if(arrayList.get(i) % 2 != 0){
-                resultlastindex = i;
-            }
-        }
-        return resultlastindex;
+        return arrayList.lastIndexOf(arrayList.stream().reduce(0,(index, num) -> {
+            if(num % 2 != 0)
+                return num;
+            return index;
+        }));
     }
+
 }
 

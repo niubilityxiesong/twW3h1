@@ -205,15 +205,16 @@ public class Add {
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
-        List<Integer> resultList = new ArrayList<>();
-        int sizearry = arrayList.size() - 1;
-        int temp;
+          List<Integer> resultList = new ArrayList<>();
+          int sizearry = arrayList.size() - 1;
+          int temp;
 
-        for(int i = 0; i < sizearry; i++){
-            temp = arrayList.get(i) + arrayList.get(i + 1);
-            temp *= 3;
-            resultList.add(temp);
-        }
-        return resultList;
+          for(int i = 0; i < sizearry; i++){
+              temp = arrayList.get(i) + arrayList.get(i + 1);
+              temp *= 3;
+              resultList.add(temp);
+          }
+          return resultList;
+
     }
 }
